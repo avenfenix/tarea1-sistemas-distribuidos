@@ -1,14 +1,17 @@
 # Tarea 1
 
-## To Do
 
-- [x] Obtener Token de Amadeus API
+
+## Server
+### Access Token - Amadeus API
+- [x] Replicar peticion ejemplo curl usando GO
+- [ ] Parsear `access_token` y `state`
+### Busqueda
+- [ ] Replicar peticion con `access_token` usando GO
+
+
+## Menu
 - [ ] Crear menu de cliente
+
 - [ ] ...
 
-
-### Setup on your system
-
-```mkdir tarea1 && cd tarea1```
-
-```go mod init https://github.com/avenfenix/tarea1-sistemas-distribuidos```
