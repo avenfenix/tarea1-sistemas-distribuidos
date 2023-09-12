@@ -1,19 +1,12 @@
-# Tarea 1
+# Tarea 1 - API RESTFul
 
-
-
-## Server
-### Access Token - Amadeus API
+## Access Token - Amadeus API
 - [x] Replicar peticion curl en GO
 - [x] Parsear `access_token`
-### Busqueda
-- [ ] Replicar peticion curl usando `access_token` en GO
-
-
-## Menu
-- [ ] Crear menu de cliente
-
-- [ ] ...
+## Busqueda
+- [ ] Crear tipo struct `AtributosBusqueda`
+- [ ] Rellenar peticion en el menu y enviar atributos a la API
+- [ ] Replicar peticion curl usando `access_token` y los `AtributosBusqueda` en server.go
 
 ## Referencias
 
