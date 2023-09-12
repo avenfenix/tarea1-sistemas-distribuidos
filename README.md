@@ -2,6 +2,6 @@
 
 ## To Do
 
-1. Obtener Token de Amadeus API
-2. Crear menu de cliente
-3. ...
+- [x] Obtener Token de Amadeus API
+- [ ] Crear menu de cliente
+- [ ] ...
