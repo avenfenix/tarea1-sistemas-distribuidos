@@ -20,3 +20,5 @@
 ### Go
 - [JSON Example](https://gobyexample.com/json)
 - [Clientes HTTP](https://apuntes.de/golang/clientes-http-uso-del-http-client/#gsc.tab=0)
+- [String Interpolation](https://marketsplash.com/tutorials/go/golang-string-interpolation/)
+- 
