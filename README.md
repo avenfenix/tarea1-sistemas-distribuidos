@@ -4,10 +4,10 @@
 
 ## Server
 ### Access Token - Amadeus API
-- [x] Replicar peticion ejemplo curl usando GO
+- [x] Replicar peticion curl en GO
 - [x] Parsear `access_token`
 ### Busqueda
-- [ ] Replicar peticion con `access_token` usando GO
+- [ ] Replicar peticion curl usando `access_token` en GO
 
 
 ## Menu
