@@ -7,6 +7,7 @@
 - [ ] Crear tipo struct `AtributosBusqueda`
 - [ ] Rellenar peticion en el menu y enviar atributos a la API
 - [ ] Replicar peticion curl usando `access_token` y los `AtributosBusqueda` en server.go
+- [ ] Mostrar tabla de resultados en el menu
 
 ## Referencias
 
