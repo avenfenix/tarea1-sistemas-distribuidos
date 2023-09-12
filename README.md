@@ -7,7 +7,8 @@
 - [ ] ...
 
 
-### Setup on yoyr system
+### Setup on your system
 
 ```mkdir tarea1 && cd tarea1```
+
 ```go mod init https://github.com/avenfenix/tarea1-sistemas-distribuidos```
