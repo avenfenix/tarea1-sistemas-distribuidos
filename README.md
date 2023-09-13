@@ -20,6 +20,7 @@
 - [String Interpolation](https://marketsplash.com/tutorials/go/golang-string-interpolation/)
 - [How to parse JSON](https://blog.hackajob.com/how-to-parse-json-from-apis-in-golang/)
 - [How to parse JSON (No usado)](https://dev.to/billylkc/parse-json-api-response-in-go-10ng)
+- [Variables y constantes](https://www.digitalocean.com/community/tutorials/how-to-use-variables-and-constants-in-go-es)
 
 ### Gin Web Framework
 - [Quickstart](https://gin-gonic.com/docs/quickstart/)
