@@ -7,9 +7,10 @@
 - [x] Replicar peticion curl en GO
 - [x] Parsear `access_token`
 ## Busqueda
-- [ ] Crear tipo struct `AtributosBusqueda`
-- [ ] Rellenar peticion en el menu y enviar atributos a la API
-- [ ] Replicar peticion curl usando `access_token` y los `AtributosBusqueda` en server.go
+- [x] Crear tipo struct `AtributosBusqueda`
+- [x] Rellenar peticion en el menu y enviar atributos a la API
+- [x] Recibir busqueda desde menu en el Server y mandarlos a la API Amadeus.
+- [ ] Leer respuesta de Amadeus y enviar respuesta al menu
 - [ ] Mostrar tabla de resultados en el menu
 
 ## Referencias
