@@ -17,3 +17,7 @@
 - [String Interpolation](https://marketsplash.com/tutorials/go/golang-string-interpolation/)
 - [How to parse JSON](https://blog.hackajob.com/how-to-parse-json-from-apis-in-golang/)
 - [How to parse JSON (No usado)](https://dev.to/billylkc/parse-json-api-response-in-go-10ng)
+
+### Gin Web Framework
+- [Quickstart](https://gin-gonic.com/docs/quickstart/)
+- [Bind query or post data](https://gin-gonic.com/docs/examples/bind-query-or-post/)
