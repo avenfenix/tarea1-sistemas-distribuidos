@@ -1,5 +1,8 @@
 # Tarea 1 - API RESTFul
 
+## Dudas
+- [ ] Parametro opcional query
+
 ## Access Token - Amadeus API
 - [x] Replicar peticion curl en GO
 - [x] Parsear `access_token`
