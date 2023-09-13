@@ -26,3 +26,4 @@
 ### Gin Web Framework
 - [Quickstart](https://gin-gonic.com/docs/quickstart/)
 - [Bind query or post data](https://gin-gonic.com/docs/examples/bind-query-or-post/)
+- [Tutorial: Restful API with Gin](https://go.dev/doc/tutorial/web-service-gin)
