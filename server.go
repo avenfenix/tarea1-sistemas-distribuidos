@@ -7,7 +7,17 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
+
+// Variables Globales
+
+var token = ""
+var server = "127.0.0.1"
+var port = "5000"
+var	client_id = ""
+var	client_secret = ""
 
 type ResponseToken struct {
 	Type            string
@@ -19,6 +29,18 @@ type ResponseToken struct {
 	Expires         int
 	State           string
 	Scope           string
+}
+
+type AtributosBusqueda struct {
+	OriginLocationCode      string `form:"originLocationCode"`
+	DestinationLocationCode string `form:"destinationLocationCode"`
+	DepartureDate           string `form:"departureDate"`
+	ReturnDate              string `form:"returnDate"`
+	Adults                  int    `form:"adults"`
+	IncludeAirlineCodes     string `form:"includedAirlineCodes"`
+	NonStop                 bool   `form:"nonStop"`
+	CurrencyCode            string `form:"currencyCode"`
+	TravelClass             string `form:"travelClass"`
 }
 
 func obtenerToken(client_id string, client_secret string) string {
@@ -50,12 +72,22 @@ func obtenerToken(client_id string, client_secret string) string {
 	return response.AccessToken
 }
 
-func buscarVuelos(token string) {
+func buscarVuelos(c *gin.Context) {
+
+
+	// Bind Query
+
+	var url string
+
+	var atributos AtributosBusqueda
+	if c.ShouldBind(&atributos) == nil {
+		url = fmt.Sprintf("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=%s&destinationLocationCode=%s&departureDate=%s&adults=%s&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY", atributos.OriginLocationCode, atributos.DestinationLocationCode, atributos.DepartureDate, atributos.Adults)
+	}
+
 
 	client := &http.Client{}
-
 	// Preparamos la peticion
-	req, err := http.NewRequest("GET", "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=DXB&destinationLocationCode=BKK&departureDate=2023-12-02&returnDate=2023-12-04&adults=1&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY", nil)
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -78,8 +110,12 @@ func buscarVuelos(token string) {
 }
 
 func main() {
-	//buscarVuelos()
-	token := obtenerToken("", "")
-	fmt.Println(token)
-	buscarVuelos(token)
+	
+	token = obtenerToken(client_id, client_secret)
+	server_address := fmt.Sprintf("%s:%s", server, port)
+
+	
+	r := gin.Default(server_address)
+	r.GET("/api/search", buscarVuelos)
+	r.Run()
 }

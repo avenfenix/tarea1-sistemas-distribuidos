@@ -6,14 +6,15 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
+	"net/http"
 	"os"
 
 	"github.com/olekukonko/tablewriter"
-
 	/* "bytes"
 	"encoding/json"
-	"net/http" */
-)
+	"net/http" */)
 
 type query struct {
 	Origen   string
@@ -24,7 +25,7 @@ type query struct {
 
 type Reserva struct{}
 
-func menu_search() {
+func menu_search(server string, port string) {
 	var Query = query{}
 	fmt.Printf("Aeropuerto de origen: ")
 	// var origen string
@@ -38,6 +39,35 @@ func menu_search() {
 	fmt.Printf("Cantidad de adultos: ")
 	// var cantidad string
 	fmt.Scanln(&Query.Cantidad)
+
+	// ----------------------------------
+	// BUSQUEDA CON API GOTRAVEL
+	// ----------------------------------
+
+	client := &http.Client{}
+
+	// Preparamos el url para la peticion
+	url := fmt.Sprintf("%s:%s/api/search?originLocationCode=%s&destinationLocationCode=%s&departureDate=%s&adults=%s&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY", Query.Origen, Query.Destino, Query.Fecha, Query.Cantidad)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+
+	bodyText, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(bodyText)
+
+	// ----------------------------------
+	// MOSTRAR TABLA CON RESULTADOS
+	// ----------------------------------
 
 	fmt.Printf("Se obtuvieron los siguientes resultados: \n")
 	data := [][]string{
@@ -55,9 +85,10 @@ func menu_search() {
 	}
 	table.Render() // Send output
 }
-/* 
+
+/*
 func getTokenAmadeus(){
-	// 
+	//
 	url := "https://test.api.amadeus.com/v1/security/oauth2/token"
 
 	body := []byte('grant_type=client_credentials&client_id={client_id}&client_secret={client_secret}')
@@ -74,7 +105,7 @@ func main() {
 		var option string
 		fmt.Scanln(&option)
 		if option == "1" {
-			menu_search()
+			menu_search("127.0.0.1", "5000")
 		}
 	}
 }
