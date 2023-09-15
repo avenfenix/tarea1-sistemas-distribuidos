@@ -27,3 +27,4 @@
 - [Quickstart](https://gin-gonic.com/docs/quickstart/)
 - [Bind query or post data](https://gin-gonic.com/docs/examples/bind-query-or-post/)
 - [Tutorial: Restful API with Gin](https://go.dev/doc/tutorial/web-service-gin)
+- [Serving data from reader](https://gin-gonic.com/docs/examples/serving-data-from-reader/)
