@@ -28,3 +28,4 @@
 - [Bind query or post data](https://gin-gonic.com/docs/examples/bind-query-or-post/)
 - [Tutorial: Restful API with Gin](https://go.dev/doc/tutorial/web-service-gin)
 - [Serving data from reader](https://gin-gonic.com/docs/examples/serving-data-from-reader/)
+- [IP:PORT Especifico](https://stackoverflow.com/questions/39448905/how-to-run-a-go-gin-server-on-a-specific-ip-address) 
