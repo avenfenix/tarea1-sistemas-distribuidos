@@ -21,7 +21,7 @@
 ```
 {"errors":[{"status":400,"code":477,"title":"INVALID FORMAT","detail":"This attribute must be a number","source":{"pointer":"adults","example":"1"}}]}
 ```
-**Fix:** En la direccion url tenia: ```&adults=%s```debio ser ```&adults=%d``` para parsear correctamente numeros enteros.
+**Fix:** En la direccion url tenia ```&adults=%s```debio ser ```&adults=%d``` para parsear correctamente numeros enteros.
 
 
 ## Referencias
