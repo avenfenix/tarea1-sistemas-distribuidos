@@ -6,7 +6,7 @@
 ## Access Token - Amadeus API
 - [x] Replicar peticion curl en GO
 - [x] Parsear `access_token`
-- [ ] Refresh Token
+- [ ] Refresh Token (Opcional)
 ## Busqueda
 - [x] Crear tipo struct `AtributosBusqueda`
 - [x] Rellenar peticion en el menu y enviar atributos a la API
