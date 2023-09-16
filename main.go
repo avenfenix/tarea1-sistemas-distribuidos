@@ -5,22 +5,67 @@ package main
 /////////////////////
 
 import (
+	"encoding/json"
 	"fmt"
-	"io"
 	"log"
-	"net/http"
 	"os"
 
+	"net/http"
+
 	"github.com/olekukonko/tablewriter"
-	/* "bytes"
-	"encoding/json"
-	"net/http" */)
+)
 
 type query struct {
 	Origen   string
 	Destino  string
 	Fecha    string
 	Cantidad string
+}
+
+type ResponseBusqueda struct {
+	Data []DataObject `json:"data"`
+}
+
+type DataObject struct {
+	Itineraries      []Itinerary       `json:"itineraries"`
+	Price            Price             `json:"price"`
+	TravelerPricings []TravelerPricing `json:"travelerPricings"`
+}
+
+type Itinerary struct {
+	Duration string    `json:"duration"`
+	Segments []Segment `json:"segments"`
+}
+
+type Segment struct {
+	Departure       Airport `json:"departure"`
+	Arrival         Airport `json:"arrival"`
+	CarrierCode     string  `json:"carrierCode"`
+	Number          string  `json:"number"`
+	Duration        string  `json:"duration"`
+	ID              string  `json:"id"`
+	NumberOfStops   int     `json:"numberOfStops"`
+	BlacklistedInEU bool    `json:"blacklistedInEU"`
+}
+
+type Airport struct {
+	IATACode string `json:"iataCode"`
+	Terminal string `json:"terminal"`
+	At       string `json:"at"`
+}
+
+type Price struct {
+	Currency   string `json:"currency"`
+	Total      string `json:"total"`
+	Base       string `json:"base"`
+	GrandTotal string `json:"grandTotal"`
+}
+
+type TravelerPricing struct {
+	TravelerID   string `json:"travelerId"`
+	FareOption   string `json:"fareOption"`
+	TravelerType string `json:"travelerType"`
+	Price        Price  `json:"price"`
 }
 
 type Reserva struct{}
@@ -47,7 +92,7 @@ func menu_search(server string, port string) {
 	client := &http.Client{}
 
 	// Preparamos el url para la peticion
-	url := fmt.Sprintf("%s:%s/api/search?originLocationCode=%s&destinationLocationCode=%s&departureDate=%s&adults=%s&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY", Query.Origen, Query.Destino, Query.Fecha, Query.Cantidad)
+	url := fmt.Sprintf("http://%s:%s/api/search?originLocationCode=%s&destinationLocationCode=%s&departureDate=%s&adults=%s&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY", server, port, Query.Origen, Query.Destino, Query.Fecha, Query.Cantidad)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -59,11 +104,10 @@ func menu_search(server string, port string) {
 	}
 	defer resp.Body.Close()
 
-	bodyText, err := io.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(bodyText)
+	var response ResponseBusqueda
+	json.NewDecoder(resp.Body).Decode(&response)
+
+	fmt.Println(response.Data)
 
 	// ----------------------------------
 	// MOSTRAR TABLA CON RESULTADOS

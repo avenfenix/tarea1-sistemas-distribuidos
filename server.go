@@ -14,10 +14,10 @@ import (
 // Variables Globales
 
 var token = ""
-var server = "127.0.0.1"
+var server = "0.0.0.0"
 var port = "5000"
-var	client_id = ""
-var	client_secret = ""
+var client_id = "gxc6Gqu513nXttiQrMAHfuAy9ZIWHFsL"
+var client_secret = "JrjJCVTwcczrTYkf"
 
 type ResponseToken struct {
 	Type            string
@@ -72,21 +72,20 @@ func obtenerToken(client_id string, client_secret string) string {
 	return response.AccessToken
 }
 
-func buscarVuelos(c *gin.Context) {
+func busqueda(c *gin.Context) {
 
+	// Obtener Token
+	token = obtenerToken(client_id, client_secret)
 
 	// Bind Query
-
 	var url string
-
 	var atributos AtributosBusqueda
 	if c.ShouldBind(&atributos) == nil {
-		url = fmt.Sprintf("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=%s&destinationLocationCode=%s&departureDate=%s&adults=%s&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY", atributos.OriginLocationCode, atributos.DestinationLocationCode, atributos.DepartureDate, atributos.Adults)
+		url = fmt.Sprintf("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=%s&destinationLocationCode=%s&departureDate=%s&adults=%d&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY", atributos.OriginLocationCode, atributos.DestinationLocationCode, atributos.DepartureDate, atributos.Adults)
 	}
 
-
+	// Peticion Busqueda
 	client := &http.Client{}
-	// Preparamos la peticion
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -101,21 +100,19 @@ func buscarVuelos(c *gin.Context) {
 	}
 	defer resp.Body.Close()
 
-	// Aqui leemos el response body
-	bodyText, err := io.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal(err)
+	if resp.StatusCode == http.StatusOK {
+		c.DataFromReader(http.StatusOK, resp.ContentLength, resp.Header.Get("Content-Type"), resp.Body, nil)
+	} else {
+		errorMessage := map[string]string{"message": "Hubo un error al realizar la búsqueda"}
+		c.JSON(resp.StatusCode, errorMessage)
 	}
-	fmt.Printf("%s\n", bodyText)
 }
 
 func main() {
-	
-	token = obtenerToken(client_id, client_secret)
+
 	server_address := fmt.Sprintf("%s:%s", server, port)
 
-	
-	r := gin.Default(server_address)
-	r.GET("/api/search", buscarVuelos)
-	r.Run()
+	r := gin.Default()
+	r.GET("/api/search", busqueda)
+	r.Run(server_address)
 }
