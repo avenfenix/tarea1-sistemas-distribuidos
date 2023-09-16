@@ -16,23 +16,13 @@
 
 ### Errores y Bugs
 
-**Amadeus responde con mal formato**
+**Amadeus responde error en formato**
 
 ```
-- go run server.go
-[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
-
-[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
- - using env:   export GIN_MODE=release
- - using code:  gin.SetMode(gin.ReleaseMode)
-
-[GIN-debug] GET    /api/search               --> main.busqueda (3 handlers)
-[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
-Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
-[GIN-debug] Listening and serving HTTP on 0.0.0.0:5000
 {"errors":[{"status":400,"code":477,"title":"INVALID FORMAT","detail":"This attribute must be a number","source":{"pointer":"adults","example":"1"}}]}
-[GIN] 2023/09/16 - 14:23:50 | 200 | 11.658704375s |       127.0.0.1 | GET      "/api/search?originLocationCode=ARI&destinationLocationCode=SCL&departureDate=2023-12-02&adults=1&includedAirlineCodes=EK&nonStop=true&currencyCode=CLP&travelClass=ECONOMY"
 ```
+**Fix:** En la direccion url tenia: ```&adults=%s```debio ser ```&adults=%d``` para parsear correctamente numeros enteros.
+
 
 ## Referencias
 
