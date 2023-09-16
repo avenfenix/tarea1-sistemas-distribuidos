@@ -13,8 +13,11 @@
 - [x] Recibir busqueda desde menu en el Server y mandarlos a la API Amadeus.
 - [x] Leer respuesta de Amadeus y enviar respuesta al menu
 - [ ] Mostrar tabla de resultados en el menu
+## Precios Definitivos
 
+## Crear Reserva
 
+## MongoDB
 
 
 ### Errores y Bugs
@@ -35,7 +38,8 @@
 - [How to parse JSON](https://blog.hackajob.com/how-to-parse-json-from-apis-in-golang/)
 - [How to parse JSON (No usado)](https://dev.to/billylkc/parse-json-api-response-in-go-10ng)
 - [Variables y constantes](https://www.digitalocean.com/community/tutorials/how-to-use-variables-and-constants-in-go-es)
-- [](https://go.dev/src/net/http/status.go)
+- [HTTP Status Code](https://go.dev/src/net/http/status.go)
+- [Trabajando con variables de entorno](https://blog.friendsofgo.tech/posts/trabajando-con-variables-de-entorno-en-go/)
 
 ### Gin Web Framework
 - [Quickstart](https://gin-gonic.com/docs/quickstart/)
