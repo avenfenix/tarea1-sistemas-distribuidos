@@ -1,12 +1,12 @@
 # Tarea 1 - API RESTFul
 
 ## Dudas
-- [ ] Parametro opcional query
+- [ ] Parametro opcional query *
 
 ## Access Token - Amadeus API
 - [x] Replicar peticion curl en GO
 - [x] Parsear `access_token`
-- [ ] Refresh Token (Opcional)
+- [ ] Refresh Token *
 ## Busqueda
 - [x] Crear tipo struct `AtributosBusqueda`
 - [x] Rellenar peticion en el menu y enviar atributos a la API
