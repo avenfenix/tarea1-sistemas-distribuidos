@@ -11,8 +11,11 @@
 - [x] Crear tipo struct `AtributosBusqueda`
 - [x] Rellenar peticion en el menu y enviar atributos a la API
 - [x] Recibir busqueda desde menu en el Server y mandarlos a la API Amadeus.
-- [ ] Leer respuesta de Amadeus y enviar respuesta al menu
+- [x] Leer respuesta de Amadeus y enviar respuesta al menu
 - [ ] Mostrar tabla de resultados en el menu
+
+
+
 
 ### Errores y Bugs
 
@@ -23,7 +26,6 @@
 ```
 **Fix:** En la direccion url tenia ```&adults=%s```debio ser ```&adults=%d``` para parsear correctamente numeros enteros.
 
-
 ## Referencias
 
 ### Go
@@ -33,6 +35,7 @@
 - [How to parse JSON](https://blog.hackajob.com/how-to-parse-json-from-apis-in-golang/)
 - [How to parse JSON (No usado)](https://dev.to/billylkc/parse-json-api-response-in-go-10ng)
 - [Variables y constantes](https://www.digitalocean.com/community/tutorials/how-to-use-variables-and-constants-in-go-es)
+- [](https://go.dev/src/net/http/status.go)
 
 ### Gin Web Framework
 - [Quickstart](https://gin-gonic.com/docs/quickstart/)
